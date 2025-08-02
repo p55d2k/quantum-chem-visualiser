@@ -1,23 +1,38 @@
 import { useState } from "react";
+import OrbitalCanvas from "./components/OrbitalCanvas";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [orbital, setOrbital] = useState("1s");
 
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+    <div className="container">
+      <div
+        style={{
+          position: "absolute",
+          top: 10,
+          left: 10,
+          zIndex: 10,
+          color: "white",
+        }}
+      >
+        <label htmlFor="orbital">Select orbital: </label>
+        <select
+          id="orbital"
+          value={orbital}
+          onChange={(e) => setOrbital(e.target.value)}
+        >
+          <option value="1s">1s</option>
+          <option value="2s">2s</option>
+          <option value="2p">2p</option>
+          <option value="2px">2px</option>
+          <option value="2py">2py</option>
+          <option value="2pz">2pz</option>
+        </select>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+      <OrbitalCanvas orbital={orbital} />
+    </div>
   );
 }
 
