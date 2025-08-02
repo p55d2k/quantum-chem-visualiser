@@ -1,13 +1,22 @@
+import { useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
-import { generateOrbital } from "../utils/orbitalMath";
 import * as THREE from "three";
 
 export default function OrbitalPointCloud({
-  orbital = "1s",
+  points,
+  orbital,
+  orbitRef,
+  setSettings,
+  align,
 }: {
+  points: number[][];
   orbital: string;
+  orbitRef: any;
+  setSettings: any;
+  align?: "x" | "y" | "z";
 }) {
-  const points = useMemo(() => generateOrbital(orbital, 10000), [orbital]);
+  const { camera } = useThree();
+
   const positions = useMemo(() => new Float32Array(points.flat()), [points]);
 
   const bufferAttributeRef = useRef<THREE.BufferAttribute>(null);
@@ -19,8 +28,30 @@ export default function OrbitalPointCloud({
     }
   }, [positions]);
 
+  useEffect(() => {
+    if (align === undefined) return;
+
+    if (align === "x") {
+      camera.position.set(15, 0, 0);
+    } else if (align === "y") {
+      camera.position.set(0, 15, 0);
+    } else if (align === "z") {
+      camera.position.set(0, 0, 15);
+    }
+
+    camera.lookAt(0, 0, 0);
+    orbitRef.current?.update();
+
+    setSettings((prev: any) => ({
+      ...prev,
+      align: undefined,
+      autoRotate: false,
+    }));
+  }, [align]);
+
   return (
-    <points>1
+    <points>
+      1
       <bufferGeometry>
         <bufferAttribute
           ref={bufferAttributeRef}
