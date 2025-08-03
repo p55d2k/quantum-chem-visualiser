@@ -32,7 +32,6 @@ export default function ControlsPanel({
         padding: "1.5rem",
         borderRadius: "8px",
         fontSize: "16px",
-        fontFamily: "sans-serif",
         zIndex: 10,
       }}
     >
@@ -42,11 +41,20 @@ export default function ControlsPanel({
           value={orbital}
           onChange={(e) => onChange({ orbital: e.target.value })}
         >
-          <option value="1s">1s</option>
-          <option value="2s">2s</option>
-          <option value="2px">2px</option>
-          <option value="2py">2py</option>
-          <option value="2pz">2pz</option>
+          <option value="1s">1s (Teal)</option>
+          <option value="2s">2s (Pink)</option>
+          <option value="2px">2px (Orange)</option>
+          <option value="2py">2py (Light Green)</option>
+          <option value="2pz">2pz (Sky Blue)</option>
+          <option value="3s">3s (Purple)</option>
+          <option value="3px">3px (Dark Orange)</option>
+          <option value="3py">3py (Green)</option>
+          <option value="3pz">3pz (Blue)</option>
+          <option value="3dz2">3dz² (Magenta)</option>
+          <option value="3dx2y2">3dx²-y² (Red)</option>
+          <option value="3dxy">3dxy (Bright Green)</option>
+          <option value="3dxz">3dxz (Cyan)</option>
+          <option value="3dyz">3dyz (Lavender)</option>
         </select>
       </label>
 
@@ -98,6 +106,10 @@ export default function ControlsPanel({
         <button onClick={() => onChange({ align: "y" })}>Align Y</button>{" "}
         <button onClick={() => onChange({ align: "z" })}>Align Z</button>
       </div>
+
+      <br />
+
+      {/* <Link to="/about">Go to About Page</Link> */}
     </div>
   );
 }

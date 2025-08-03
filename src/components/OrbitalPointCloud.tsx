@@ -67,14 +67,30 @@ export default function OrbitalPointCloud({
             ? "#00b3b3" // Teal for 1s
             : orbital == "2s"
             ? "#ff66b3" // Pink for 2s
-            : orbital == "2p"
-            ? "#ffcc00" // Gold for 2p
             : orbital == "2px"
             ? "#ff6600" // Orange for 2px
             : orbital == "2py"
             ? "#66ff66" // Light Green for 2py
             : orbital == "2pz"
             ? "#3399ff" // Sky Blue for 2pz
+            : orbital == "3s"
+            ? "#cc33ff" // Purple for 3s
+            : orbital == "3px"
+            ? "#ff9933" // Dark Orange for 3px
+            : orbital == "3py"
+            ? "#33cc33" // Green for 3py
+            : orbital == "3pz"
+            ? "#3366ff" // Blue for 3pz
+            : orbital == "3dz2"
+            ? "#ff33cc" // Magenta for 3dz2
+            : orbital == "3dx2y2"
+            ? "#ff3333" // Red for 3dx2y2
+            : orbital == "3dxy"
+            ? "#33ff33" // Bright Green for 3dxy
+            : orbital == "3dxz"
+            ? "#33ccff" // Cyan for 3dxz
+            : orbital == "3dyz"
+            ? "#9966ff" // Lavender for 3dyz
             : "#ffffff" // Default white
         }
       />
