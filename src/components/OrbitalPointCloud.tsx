@@ -1,6 +1,7 @@
 import { useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { getColor } from "../utils/colors";
 
 export default function OrbitalPointCloud({
   points,
@@ -31,12 +32,16 @@ export default function OrbitalPointCloud({
   useEffect(() => {
     if (align === undefined) return;
 
+    const original_x = Math.max(camera.position.x, 15);
+    const original_y = Math.max(camera.position.y, 15);
+    const original_z = Math.max(camera.position.z, 15);
+
     if (align === "x") {
-      camera.position.set(15, 0, 0);
+      camera.position.set(original_x, 0, 0);
     } else if (align === "y") {
-      camera.position.set(0, 15, 0);
+      camera.position.set(0, original_y, 0);
     } else if (align === "z") {
-      camera.position.set(0, 0, 15);
+      camera.position.set(0, 0, original_z);
     }
 
     camera.lookAt(0, 0, 0);
@@ -60,40 +65,7 @@ export default function OrbitalPointCloud({
           needsUpdate
         />
       </bufferGeometry>
-      <pointsMaterial
-        size={0.03}
-        color={
-          orbital == "1s"
-            ? "#00b3b3" // Teal for 1s
-            : orbital == "2s"
-            ? "#ff66b3" // Pink for 2s
-            : orbital == "2px"
-            ? "#ff6600" // Orange for 2px
-            : orbital == "2py"
-            ? "#66ff66" // Light Green for 2py
-            : orbital == "2pz"
-            ? "#3399ff" // Sky Blue for 2pz
-            : orbital == "3s"
-            ? "#cc33ff" // Purple for 3s
-            : orbital == "3px"
-            ? "#ff9933" // Dark Orange for 3px
-            : orbital == "3py"
-            ? "#33cc33" // Green for 3py
-            : orbital == "3pz"
-            ? "#3366ff" // Blue for 3pz
-            : orbital == "3dz2"
-            ? "#ff33cc" // Magenta for 3dz2
-            : orbital == "3dx2y2"
-            ? "#ff3333" // Red for 3dx2y2
-            : orbital == "3dxy"
-            ? "#33ff33" // Bright Green for 3dxy
-            : orbital == "3dxz"
-            ? "#33ccff" // Cyan for 3dxz
-            : orbital == "3dyz"
-            ? "#9966ff" // Lavender for 3dyz
-            : "#ffffff" // Default white
-        }
-      />
+      <pointsMaterial size={0.03} color={getColor(orbital)} />
     </points>
   );
 }

@@ -1,3 +1,5 @@
+import { getColor } from "../utils/colors";
+
 export type ControlsPanelProps = {
   orbital: string;
   pointCount: number;
@@ -40,21 +42,53 @@ export default function ControlsPanel({
         <select
           value={orbital}
           onChange={(e) => onChange({ orbital: e.target.value })}
+          style={{
+            background: `linear-gradient(90deg, ${getColor(
+              orbital
+            )} 2%, white 2%)`,
+            paddingLeft: "20px",
+          }}
         >
-          <option value="1s">1s (Teal)</option>
-          <option value="2s">2s (Pink)</option>
-          <option value="2px">2px (Orange)</option>
-          <option value="2py">2py (Light Green)</option>
-          <option value="2pz">2pz (Sky Blue)</option>
-          <option value="3s">3s (Purple)</option>
-          <option value="3px">3px (Dark Orange)</option>
-          <option value="3py">3py (Green)</option>
-          <option value="3pz">3pz (Blue)</option>
-          <option value="3dz2">3dz² (Magenta)</option>
-          <option value="3dx2y2">3dx²-y² (Red)</option>
-          <option value="3dxy">3dxy (Bright Green)</option>
-          <option value="3dxz">3dxz (Cyan)</option>
-          <option value="3dyz">3dyz (Lavender)</option>
+          {[
+            "1s",
+            "2s",
+            "2px",
+            "2py",
+            "2pz",
+            "3s",
+            "3px",
+            "3py",
+            "3pz",
+            "3dz2",
+            "3dx2y2",
+            "3dxy",
+            "3dxz",
+            "3dyz",
+            "4s",
+            "4px",
+            "4py",
+            "4pz",
+            "4dz2",
+            "4dx2y2",
+            "4dxy",
+            "4dxz",
+            "4dyz",
+            "4fz3",
+            "4fyz2",
+            "4fxz2",
+            "4fxyz",
+            "4fzx2y2",
+            "4fy3x2y2",
+            "4fx3y2",
+          ].map((orb) => (
+            <option
+              key={orb}
+              value={orb}
+              style={{ backgroundColor: getColor(orb) }}
+            >
+              {orb} ({getColor(orb)})
+            </option>
+          ))}
         </select>
       </label>
 
@@ -65,7 +99,7 @@ export default function ControlsPanel({
         <input
           type="range"
           min={1000}
-          max={50000}
+          max={200000}
           step={1000}
           value={pointCount}
           onChange={(e) =>

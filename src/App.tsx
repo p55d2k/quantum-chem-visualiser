@@ -17,7 +17,7 @@ function App() {
 
   const [settings, setSettings] = useState<ControlsPanelProps>({
     orbital: "1s",
-    pointCount: 20000,
+    pointCount: 50000,
     autoRotate: true,
     showAxes: true,
   });
